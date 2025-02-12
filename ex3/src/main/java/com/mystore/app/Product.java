@@ -1,14 +1,67 @@
+// package com.mystore.app;
+
+// @Component
+// class Product {
+    
+//     private int id;
+//     private String name;
+//     private String barcode;
+
+//     Barcode barCoder = new Barcode();
+
+//     public Product() {
+//         System.out.println("In Product constructor");
+//     }
+
+//     // Getter methods
+//     public int getId() {
+//         return id;
+//     }
+
+//     public String getName() {
+//         return name;
+//     }
+
+//     public String getBarcode() {
+//         return barcode;
+//     }
+
+//     // Setter methods
+//     public void setId(int id) {
+//         this.id = id;
+//     }
+
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+
+//     public void setBarcode() {
+//         this.barcode = barCoder.createBarcode(this);
+//     }
+
+//     @Override
+//     public String toString() {
+//         return "Product{id=" + id + ", name='" + name + "', barcode='" + barcode + "'}";
+//     }
+
+// }
 package com.mystore.app;
 
-class Product {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Product {
     
     private int id;
     private String name;
     private String barcode;
 
-    Barcode barCoder = new Barcode();
+    private Barcode barCoder;
 
-    public Product() {
+    @Autowired
+    public Product(Barcode barCoder) {
+        this.barCoder = barCoder;
         System.out.println("In Product constructor");
     }
 
@@ -34,7 +87,7 @@ class Product {
         this.name = name;
     }
 
-    public void setBarcode() {
+    public void generateBarcode() {
         this.barcode = barCoder.createBarcode(this);
     }
 
@@ -44,3 +97,4 @@ class Product {
     }
 
 }
+
